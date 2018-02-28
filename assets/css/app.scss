@@ -1,0 +1,84 @@
+/* This file is for your main application css. */
+@import "bootstrap";
+
+.login {
+
+	text-align: center;
+}
+
+.tasks {
+	margin-top: 3%;
+}
+
+.employees {
+	margin-top:25px;
+	text-align:center;
+}
+
+.center-al {
+	text-align:center;
+}
+
+.underling {
+	
+	margin-top:15px;
+	width:70%;
+	margin-left:15%; 
+    margin-right:15%;
+}
+
+.noTask {
+	text-align: center;
+	margin-top:20%;
+}
+
+.hidden {
+	display: none;
+}
+
+.actions {
+
+	text-align: center;
+	margin-top:5%;
+}
+
+.to-right {
+	
+	text-align: right;
+}
+
+.manager-card {
+
+	width:400px;
+	height:150px;
+	margin-top:5%; 
+	margin-left:30%; 
+    margin-right:25%;
+}
+
+.title {
+
+	color: blue;
+}
+
+.buttons {
+
+	margin-right: 10px;
+	padding: 5px;
+}
+
+.list {
+
+	margin:1px;
+}
+
+.no_task {
+
+	text-align: center;
+	margin: 30px;
+}
+
+.options {
+
+	margin-right: 20px;
+}

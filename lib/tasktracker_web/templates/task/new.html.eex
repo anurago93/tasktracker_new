@@ -1,0 +1,11 @@
+<%= if @assigned_to != [] do %>
+
+<h2 class="tasks">New Task</h2>
+
+<%= render "form.html", Map.put(assigns, :action, task_path(@conn, :create)) %>
+
+<span><%= link "Back", to: "/profile" %></span>
+<% else %>
+<h3 class="noTask">You cannot create tasks as you are not a Manager yet!!</h3>
+<h5 class="tasks center-al"><%= link "Back", to: "/profile" %></h5>
+<% end %>

@@ -1,0 +1,52 @@
+<script>
+ window.timeblock_path = "<%= timeblock_path(@conn, :index) %>";
+</script>
+
+
+<h2 class="tasks">Edit Task</h2>
+<h3 class="to-right"><span><%= link "Back", to: "/tasks" %></span></h3>
+
+<%= render "form.html", Map.put(assigns, :action, task_path(@conn, :update, @task)) %>
+
+<span><button class="start-button btn btn-primary" data-task-id="<%= @task.id %>"
+              data-start="<%= DateTime.utc_now() %>">Start Time</button></span>
+<span><button class="stop-button btn btn-primary" data-task-id="<%= @task.id %>"
+              data-stop="<%= DateTime.utc_now() %>">Stop Time</button></span>
+
+<div class="tasks">
+<span>Enter Start Time: <input id="starttime" type="datetime-local"></input></span>
+<span>Enter Stop Time: <input id="stoptime" type="datetime-local"></input></span>
+<span><button class="save-button btn btn-primary" data-task-id="<%= @task.id %>">Save Block</button></span>
+</div>
+
+<table class="table table-striped tasks">
+      <thead>
+        <tr>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Time Spent</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for timeblock <- @timeblocks do %>
+            <tr>
+              <td><%= timeblock.start %></td>
+              <td><%= timeblock.stop %></td>
+              <td><%= NaiveDateTime.diff(timeblock.stop, timeblock.start) %></td>
+              <td><button class="edit-button btn btn-primary" data-edit="<%= timeblock.id %>" 
+              data-task-id="<%= @task.id %>">Edit Block</button></td>
+              <td><button class="delete-button btn btn-primary" data-delete="<%= timeblock.id %>" 
+              data-task-id="<%= @task.id %>">Delete Block</button></td>
+            </tr>
+        <% end %>
+      </tbody>
+</table>
+
+<div class="tasks hidden">
+<span>Edit Start Time: <input id="editstarttime" type="datetime-local"></input></span>
+<span>Edit Stop Time: <input id="editstoptime" type="datetime-local"></input></span>
+<span><button class="save-edit-button btn btn-primary" data-task-id="<%= @task.id %>">Save Block</button></span>
+</div>
+

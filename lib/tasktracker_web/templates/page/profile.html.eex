@@ -1,0 +1,55 @@
+<div class = "container">
+<%= if @current_user do %>
+  <div class="actions">
+      <h4><span><%= link "Create New Task", to: task_path(@conn, :new) %></span> | <span><%= link "Your Tasks", to: "/feed" %>
+      </span> | <span><%= link "Task Report", to: "/tasks" %></span></h4>
+  </div>
+    <div class="card manager-card">
+      <div class="card-body">
+        <h4 class="login">My Manager</h4>
+          <%= if @current_user.manager do %>
+          <ul>
+            <li>
+              <strong>ID:</strong>
+              <%= @current_user.manager_id %>
+            </li>
+            <li>
+              <strong>Name:</strong>
+              <%= @current_user.manager.name %>
+            </li>
+            <li>
+              <strong>Email:</strong>
+              <%= @current_user.manager.email %>
+            </li>
+          </ul>
+          <% else %>
+          <h4 class="tasks center-al"> First user! Hence no Manager!!</h4>
+          <% end %>
+        </div>
+      </div>
+  <h4 class="employees">My Employees</h4>
+  <%= if @assigned_to != [] do %>
+    <table class="table table-striped underling">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for assigned_to <- @assigned_to do %>
+            <tr>
+              <td><%= assigned_to.id %></td>
+              <td><%= assigned_to.name %></td>
+              <td><%= assigned_to.email %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+  <h5 class="tasks center-al">No employees as you are not a Manager yet!!</h5>
+  <% end %>
+ <% end %>
+</div>
+

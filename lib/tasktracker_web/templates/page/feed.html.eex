@@ -1,0 +1,31 @@
+
+<div class = "container">
+<%= if @current_user do %>
+<h4 class="center-al">Assigned Tasks | <span><%= link "Home", to: "/profile" %></span> </h4>
+
+<%= if @tasks !== [] do %>
+    <%=Enum.map @tasks, fn task -> %>
+    <div class="row tasks">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title title"><%= task.title %></h4>
+            <p class="list"><b>Description:</b> <%= task.description %></p>
+            <p class="list"><b>Assigned To:</b> <%= task.user.name %></p>
+            <p class="list"><b>Completed:</b> <%= if task.completed do %><span>Completed</span><% else %><span>In Progress</span><% end %></p>
+            <p class="row">
+            <span class="buttons"><%= link "Show", to: task_path(@conn, :show, task), class: "btn btn-primary btn-xs" %></span>
+            <span class="buttons"><%= link "Edit", to: task_path(@conn, :edit, task), class: "btn btn-primary btn-xs" %></span>
+            <span class="buttons"><%= link "Delete", to: task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-default btn-danger btn-xs" %></span>
+          </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+<% else %>
+<h6 class="no_task"> No Tasks To Show </h6>
+<% end %>
+<% end %>
+</div>
+
